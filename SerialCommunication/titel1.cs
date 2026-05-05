@@ -247,7 +247,27 @@ namespace SerialCommunication
                     antwoord = antwoord.Substring(4);
                     radioButtonDigital5.Checked = (antwoord == "1");
                 }
-                
+                if (!serialPortArduino.IsOpen) ;
+                {
+                    serialPortArduino.ReadExisting();
+                    string comando = "get d6";
+                    serialPortArduino.WriteLine(comando);
+                    string antwoord = serialPortArduino.ReadLine();
+                    antwoord = antwoord.TrimEnd();
+                    antwoord = antwoord.Substring(4);
+                    radioButtonDigital6.Checked = (antwoord == "1");
+                }
+                if (!serialPortArduino.IsOpen) ;
+                {
+                    serialPortArduino.ReadExisting();
+                    string comando = "get d7";
+                    serialPortArduino.WriteLine(comando);
+                    string antwoord = serialPortArduino.ReadLine();
+                    antwoord = antwoord.TrimEnd();
+                    antwoord = antwoord.Substring(4);
+                    radioButtonDigital7.Checked = (antwoord == "1");
+                }
+
             }
             catch (Exception exception) 
             {
