@@ -197,11 +197,59 @@ namespace SerialCommunication
             try
             {
                 string comando;
-                if (trackBarPWM9.Value == 0) comando = "set pwm9 0";
-                else comando = "set pwm9 " + trackBarPWM9.Value;
+                if (trackBarPWM10.Value == 0) comando = "set pwm10 0";
+                else comando = "set pwm10 " + trackBarPWM10.Value;
                 serialPortArduino.WriteLine(comando);
             }
             catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "Connect";
+            }
+        }
+
+        private void trackBarPWM11_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                string comando;
+                if (trackBarPWM11.Value == 0) comando = "set pwm11 0";
+                else comando = "set pwm11 " + trackBarPWM11.Value;
+                serialPortArduino.WriteLine(comando);
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "Connect";
+            }
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            timerOefening3.Enabled = tabControl.SelectedIndex == 3;
+        }
+
+        private void timerOefening3_Tick(object sender, EventArgs e)
+        {
+            try 
+            {
+                if( !serialPortArduino.IsOpen );
+                {
+                    serialPortArduino.ReadExisting();
+                    string comando = "get d5";
+                    serialPortArduino.WriteLine(comando);
+                    string antwoord = serialPortArduino.ReadLine();
+                    antwoord = antwoord.TrimEnd();
+                    antwoord = antwoord.Substring(4);
+                    radioButtonDigital5.Checked = (antwoord == "1");
+                }
+                
+            }
+            catch (Exception exception) 
             {
                 labelStatus.Text = "Error: " + exception.Message;
                 serialPortArduino.Close();
