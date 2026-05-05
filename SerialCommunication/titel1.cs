@@ -137,5 +137,77 @@ namespace SerialCommunication
                 buttonConnect.Text = "Connect";
             }
         }
+
+        private void checkBoxDigital3_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string comando;
+                if (checkBoxDigital3.Checked) comando = "set d3 high";
+                else comando = "set d3 low";
+                serialPortArduino.WriteLine(comando);
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "Connect";
+            }
+        }
+
+        private void checkBoxDigital4_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string comando;
+                if (checkBoxDigital4.Checked) comando = "set d4 high";
+                else comando = "set d4 low";
+                serialPortArduino.WriteLine(comando);
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "Connect";
+            }
+        }
+
+        private void trackBarPWM9_Scroll(object sender, EventArgs e)
+        {
+            try 
+            {
+                string comando;
+                if (trackBarPWM9.Value == 0) comando = "set pwm9 0";
+                else comando = "set pwm9 " + trackBarPWM9.Value;
+                serialPortArduino.WriteLine(comando);
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "Connect";
+            }
+        }
+
+        private void trackBarPWM10_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                string comando;
+                if (trackBarPWM9.Value == 0) comando = "set pwm9 0";
+                else comando = "set pwm9 " + trackBarPWM9.Value;
+                serialPortArduino.WriteLine(comando);
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "Connect";
+            }
+        }
     }
 }
